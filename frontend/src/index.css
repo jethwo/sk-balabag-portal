@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+/* Brand palette & fonts from the Figma design system. Never use pure black or white. */
+@theme {
+  --font-heading: "Almarai", "Inter", sans-serif;
+  --font-sub: "Amiko", "Inter", sans-serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --color-purple: #5F1D8A;
+  --color-red: #CF1226;
+  --color-blue: #0037AC;
+  --color-yellow: #FCD317;
+  --color-cream: #F6F2E3;
+  --color-ink: #2C123E;
+  --color-paper: #FFFCF4;
+}
+
+@layer base {
+  body { @apply bg-paper font-sans text-ink; }
+  h1, h2, h3 { @apply font-heading font-bold leading-tight; }
+}
+
+/* Styles for rich-text content written in the TipTap editor */
+.rich p { margin: 0.6em 0; }
+.rich h2 { font-size: 1.4rem; margin: 1em 0 0.4em; }
+.rich h3 { font-size: 1.15rem; margin: 1em 0 0.4em; }
+.rich ul { list-style: disc; padding-left: 1.4em; }
+.rich ol { list-style: decimal; padding-left: 1.4em; }
+.rich a { color: var(--color-blue); text-decoration: underline; }
+.rich blockquote { border-left: 4px solid var(--color-yellow); padding-left: 1em; font-style: italic; }
