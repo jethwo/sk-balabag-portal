@@ -1,7 +1,7 @@
 export interface PPAImage { id: number; image: string; caption: string }
 export interface PPA {
   id: number; title: string; date_posted: string; project_dates: string; status: string; center: string;
-  committees: string; description: string; cover_image: string | null; is_published: boolean; images: PPAImage[];
+  committees: string; description: string; cover_image: string | null; is_featured: boolean; is_published: boolean; images: PPAImage[];
 }
 export interface Report { id: number; title: string; date: string; file: string; thumbnail: string | null; is_published: boolean }
 export interface Partner { id: number; name: string; type: string; description: string; website: string; logo: string | null }

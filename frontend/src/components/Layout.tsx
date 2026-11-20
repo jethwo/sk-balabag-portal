@@ -15,13 +15,14 @@ export default function Layout() {
 
   return (
     <div className="flex min-h-screen flex-col">
-      <header className="sticky top-0 z-10 border-b border-ink/10 bg-cream">
+      {/* Barangay seal on the left, SK logo on the right, both transparent PNGs on the off-white bar. */}
+      <header className="sticky top-0 z-50 border-b border-ink/10 bg-paper">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-x-6 gap-y-1 px-4 py-2">
           <Link to="/" className="mr-auto flex items-center gap-2 font-heading font-bold leading-tight text-purple">
-            <img src="/logo.png" alt="SK Balabag logo" className="h-10" />
-            <span>Balabag Pavia<small className="block font-normal text-ink">SK Portal</small></span>
+            <img src="/seal.png" alt="Barangay Balabag seal" className="h-11" />
+            <span>SK BALABAG<small className="block font-normal text-ink">Transparency Portal</small></span>
           </Link>
-          <nav className="flex flex-wrap gap-x-4 text-[13px]">
+          <nav className="order-last flex w-full flex-wrap gap-x-4 text-[13px] md:order-none md:w-auto">
             {links.map(([to, bold, light]) => (
               <NavLink key={to} to={to} end={to === "/"}
                 className={({ isActive }) => cn("border-b-2 border-transparent py-1", isActive && "border-purple")}>
@@ -29,6 +30,7 @@ export default function Layout() {
               </NavLink>
             ))}
           </nav>
+          <img src="/logo.png" alt="SK Balabag logo" className="h-11" />
         </div>
       </header>
 

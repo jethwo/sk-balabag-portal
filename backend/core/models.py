@@ -30,6 +30,7 @@ class PPA(models.Model):
     committees = models.CharField("Committees in charge", max_length=200, blank=True)
     description = models.TextField(blank=True, help_text="Rich text (HTML), sanitized on save")
     cover_image = models.ImageField(upload_to="ppas/", null=True, blank=True)
+    is_featured = models.BooleanField("Show in the home page photo gallery", default=False)
     is_published = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
 

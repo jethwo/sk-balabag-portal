@@ -1,7 +1,7 @@
 import { CENTERS, PARTNER_TYPES, STATUSES } from "@/lib/utils";
 
 export type FieldType = "text" | "textarea" | "richtext" | "date" | "select" | "image" | "file" | "number" | "checkbox" | "url" | "email";
-export interface FieldDef { name: string; label: string; type: FieldType; options?: string[]; accept?: string; required?: boolean }
+export interface FieldDef { name: string; label: string; type: FieldType; options?: string[]; accept?: string; required?: boolean; default?: boolean }
 
 export interface ResourceConfig { resource: string; title: string; fields: FieldDef[]; label: (item: any) => string }
 
@@ -22,6 +22,7 @@ export const CONFIGS: Record<string, ResourceConfig> = {
       { name: "committees", label: "Committees in charge", type: "text" },
       { name: "description", label: "Description", type: "richtext" },
       { name: "cover_image", label: "Cover photo", type: "image", accept: "image/*" },
+      { name: "is_featured", label: "Show in the home page photo gallery (needs a cover photo)", type: "checkbox", default: false },
       { name: "is_published", label: "Published (visible to the public)", type: "checkbox" },
     ],
   },
@@ -70,7 +71,7 @@ export const CONFIGS: Record<string, ResourceConfig> = {
 
 export const SITE_FIELDS: FieldDef[] = [
   { name: "hero_text", label: "Home banner text", type: "textarea" },
-  { name: "hero_image", label: "Banner photo", type: "image", accept: "image/*" },
+  { name: "hero_image", label: "Banner photo (leave empty to use the built-in photo)", type: "image", accept: "image/*" },
   { name: "partner_text", label: "Partnerships blurb", type: "textarea" },
   { name: "partner_photo1", label: "Partnerships photo 1", type: "image", accept: "image/*" },
   { name: "partner_photo2", label: "Partnerships photo 2", type: "image", accept: "image/*" },

@@ -10,8 +10,9 @@ class PPAImageInline(admin.TabularInline):
 
 @admin.register(PPA)
 class PPAAdmin(admin.ModelAdmin):
-    list_display = ("title", "center", "status", "date_posted", "is_published")
-    list_filter = ("center", "status", "is_published")
+    list_display = ("title", "center", "status", "date_posted", "is_featured", "is_published")
+    list_filter = ("center", "status", "is_featured", "is_published")
+    list_editable = ("is_featured",)
     search_fields = ("title",)
     inlines = [PPAImageInline]
 

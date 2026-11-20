@@ -13,7 +13,7 @@ function initialValues(fields: FieldDef[], item?: Values | null): Values {
   const v: Values = {};
   for (const f of fields) {
     if (isFile(f)) v[f.name] = undefined;                    // undefined = "keep the current file"
-    else if (f.type === "checkbox") v[f.name] = item ? !!item[f.name] : true;
+    else if (f.type === "checkbox") v[f.name] = item ? !!item[f.name] : (f.default ?? true);
     else if (f.type === "select") v[f.name] = item?.[f.name] ?? f.options![0];
     else if (f.type === "date") v[f.name] = item?.[f.name] ?? new Date().toISOString().slice(0, 10);
     else if (f.type === "number") v[f.name] = item?.[f.name] ?? 0;
