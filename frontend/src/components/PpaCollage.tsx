@@ -1,4 +1,4 @@
-import type { CSSProperties } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import type { PPA } from "@/lib/types";
@@ -12,13 +12,21 @@ import type { PPA } from "@/lib/types";
  * bottom-right corners left clear for the text), then frozen here so the layout is the
  * same on every render. Each tile drifts slowly and grows a little when hovered.
  *
+ * Phones get the first nine tiles as a plain 3x3 grid: the scattered arrangement needs
+ * width to read as a collage, and all twenty squares stacked three to a row turned into
+ * several screens of scrolling.
+ *
  * Which PPAs appear is chosen in the dashboard: tick "Show in the home page photo
  * gallery" on a PPA that has a cover photo.
  */
 interface Spot { left: number; top: number; size: number; tint: string }
 
+/** How many tiles the phone grid shows: three rows of three. */
+const MOBILE_TILES = 9;
+
 // left/top are % of the box; size is % of its width (the square's side).
-// Ordered so that a short list is still spread over the whole box.
+// Ordered so that a short list is still spread over the whole box, and so the first
+// nine cycle through the four brand colours for the phone grid.
 const SPOTS: Spot[] = [
   { left: 45.1, top: 74.8, size: 14.3, tint: "bg-red" },
   { left: 0.3, top: 9.0, size: 12.9, tint: "bg-blue" },
@@ -79,13 +87,13 @@ const ExploreButton = ({ className }: { className?: string }) => (
   </Button>
 );
 
-export default function PpaCollage({ ppas, blurb }: { ppas: PPA[]; blurb?: string }) {
+export default function PpaCollage({ ppas, blurb }: { ppas: PPA[]; blurb?: ReactNode }) {
   // With no photos yet, fill the whole arrangement with empty tinted tiles so the
   // section still reads as a gallery.
   const tiles = SPOTS.slice(0, ppas.length ? Math.min(ppas.length, SPOTS.length) : SPOTS.length);
 
   return (
-    <section className="mx-auto max-w-6xl px-4 py-10">
+    <section className="mx-auto max-w-6xl px-4 py-8 md:py-10">
       {/* Wide screens: the scattered squares, with the text floating over the clear corners. */}
       <div className="relative isolate hidden aspect-[553/327] md:block">
         {tiles.map((s, i) => (
@@ -100,16 +108,16 @@ export default function PpaCollage({ ppas, blurb }: { ppas: PPA[]; blurb?: strin
         </div>
       </div>
 
-      {/* Phones: the same tiles, stacked into a simple grid. */}
+      {/* Phones: the first nine tiles as a 3x3 grid. */}
       <div className="md:hidden">
-        <Heading className="mb-3 text-3xl" />
-        {blurb && <p className="mb-4">{blurb}</p>}
-        <div className="mb-5 grid isolate grid-cols-3 gap-2">
-          {tiles.map((s, i) => (
+        <Heading className="mb-3 text-2xl sm:text-3xl" />
+        {blurb && <p className="mb-4 text-sm sm:text-base">{blurb}</p>}
+        <div className="isolate mb-5 grid grid-cols-3 gap-2">
+          {tiles.slice(0, MOBILE_TILES).map((s, i) => (
             <Tile key={i} ppa={ppas[i]} tint={s.tint} i={i} className="relative block aspect-square hover:z-10" />
           ))}
         </div>
-        <ExploreButton />
+        <ExploreButton className="w-full py-3 sm:w-auto" />
       </div>
     </section>
   );

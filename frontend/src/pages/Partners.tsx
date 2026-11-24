@@ -8,8 +8,8 @@ export default function Partners() {
   return (
     <>
       <Hero title={<b>Partnerships</b>} />
-      <div className="mx-auto max-w-6xl px-4 py-8">
-        <h2 className="mb-4 text-2xl text-blue">Our partners</h2>
+      <div className="mx-auto max-w-6xl px-4 py-6 md:py-8">
+        <h2 className="mb-4 text-xl text-blue sm:text-2xl">Our partners</h2>
         {!partners.length && <p>No partners yet.</p>}
         <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
           {partners.map((p) => (

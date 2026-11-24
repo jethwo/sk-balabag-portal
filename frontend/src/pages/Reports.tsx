@@ -15,13 +15,13 @@ export default function Reports() {
   return (
     <>
       <Hero title={<><b>Accomplishment</b><br /><span className="font-sub font-normal">Reports</span></>} />
-      <div className="mx-auto max-w-6xl px-4 py-8">
-        <p className="mb-2 font-sub text-xl text-red">Browse through <b>Accomplishment Reports.</b></p>
+      <div className="mx-auto max-w-6xl px-4 py-6 md:py-8">
+        <p className="mb-2 font-sub text-lg text-red sm:text-xl">Browse through <b>Accomplishment Reports.</b></p>
         <form className="flex gap-2" onSubmit={(e) => { e.preventDefault(); setSearch(text); }}>
           <Input placeholder="Search for a report" value={text} onChange={(e) => setText(e.target.value)} />
-          <Button variant="red">Search</Button>
+          <Button variant="red" className="shrink-0">Search</Button>
         </form>
-        <h2 className="mb-3 mt-6 text-2xl text-red">Accomplishment Reports</h2>
+        <h2 className="mb-3 mt-6 text-xl text-red sm:text-2xl">Accomplishment Reports</h2>
         {isLoading && <p>Loading…</p>}
         {!isLoading && !reports.length && <p>No reports yet.</p>}
         <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
@@ -29,8 +29,8 @@ export default function Reports() {
             <a key={r.id} href={r.file} target="_blank" rel="noopener noreferrer"
               className="block overflow-hidden rounded-md border border-ink/10 bg-paper shadow-sm hover:shadow-md">
               {r.thumbnail
-                ? <img src={r.thumbnail} alt="" className="h-40 w-full object-cover" />
-                : <div className="grid h-40 place-items-center bg-cream text-red"><FileText size={40} /></div>}
+                ? <img src={r.thumbnail} alt="" className="h-32 w-full object-cover sm:h-40" />
+                : <div className="grid h-32 place-items-center bg-cream text-red sm:h-40"><FileText size={40} /></div>}
               <div className="p-3"><b className="block text-sm leading-snug">[PDF] {r.title}</b><small className="text-xs text-purple">{fmtDate(r.date)}</small></div>
             </a>
           ))}
