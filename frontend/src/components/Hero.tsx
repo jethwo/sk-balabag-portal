@@ -19,7 +19,7 @@ export default function Hero({ title, text }: { title?: ReactNode; text?: string
       <div className="absolute inset-0 bg-gradient-to-r from-purple via-purple/60 to-purple/35" />
       <div className="hero-text relative mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-4 py-10">
         <div>
-          <h1 className="text-4xl text-yellow md:text-5xl">PONDO SANG KABATAAN</h1>
+          <h1 className="text-4xl text-yellow md:text-5xl">PONDO SANG KABATAAN:</h1>
           <p className="max-w-sm font-sub text-xl leading-tight md:text-2xl">SK Balabag Transparency Portal</p>
         </div>
         {title && <div className="text-right font-heading text-3xl font-bold leading-tight text-yellow md:text-5xl">{title}</div>}

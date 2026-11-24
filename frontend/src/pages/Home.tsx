@@ -32,7 +32,13 @@ export default function Home() {
         </div>
       </section>
 
-      <PpaCollage ppas={gallery} blurb="See what the Sangguniang Kabataan has done for the youth of Balabag." />
+      <PpaCollage ppas={gallery} 
+      blurb =
+      {
+        <>
+        See what the Sangguniang Kabataan <br/>
+        has done for the youth of Balabag.</>
+      } />
 
       <section className="bg-cream">
         <div className="mx-auto max-w-6xl px-4 py-10">
